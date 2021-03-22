@@ -219,6 +219,8 @@ SBGNview <- function(gene.data = NULL, cpd.data = NULL, simulate.data = FALSE, i
                                        user.data = user.data, output.formats = output.formats, 
                                        sbgn.id.attr = sbgn.id.attr, pathway.name = pathway.name.on.graph, 
                                        if.plot.svg = FALSE, ...)
+        # store only user data mapped to glyphs
+        user.data <- get.mapped.user.data(sbgn.result.list$glyphs, user.data)
         # record all parameters. They might be used again when we later modify the 'SBGNview' object
         sbgn.result.list[["render.sbgn.parameters.list"]] <- list(input.sbgn = input.sbgn.full.path, 
                                                                   output.file = output.file.sbgn,
@@ -260,6 +262,30 @@ SBGNview <- function(gene.data = NULL, cpd.data = NULL, simulate.data = FALSE, i
 createSBGNviewObject <- function(data, output.file, output.formats){
     structure(list(data = data, output.file = output.file, 
                    output.formats = output.formats), class = "SBGNview")
+}
+
+#########################################################################################################
+# this function will return only the user data that have been mapped to glyphs
+get.mapped.user.data <- function(glyphs, user.data) {
+    
+    node.ids.with.data <- c()
+    if.gene.and.cpd.data <- FALSE
+    if(length(user.data) > 3) if.gene.and.cpd.data <- TRUE
+    
+    for(glyph in glyphs) {
+        if(identical(glyph@user.data, logical(0))) next # empty slot
+        if(!"no.user.data" %in% glyph@user.data) {
+            node.ids.with.data <- c(node.ids.with.data, glyph@id[[1]])
+        }
+    }
+    user.data[[1]] <- subset(user.data[[1]], 
+                             rownames(user.data[[1]]) %in% node.ids.with.data) 
+    if(if.gene.and.cpd.data) {
+        user.data[[4]] <- subset(user.data[[4]], 
+                                 rownames(user.data[[4]]) %in% node.ids.with.data) 
+    }
+    
+    return(user.data)
 }
 
 #########################################################################################################
