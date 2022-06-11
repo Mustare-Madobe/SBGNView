@@ -24,6 +24,8 @@ Key features:
 
 Please cite the following papers when using this open-source  package. This will help the project and our team:
 
+Dong X, Vegesna K, Brouwer C, Luo W. SBGNview: towards data analysis, integration and visualization on all pathways. Bioinformatics, 2022, 38(5):1473–1476, <a href=https://doi.org/10.1093/bioinformatics/btab793>doi: 10.1093/bioinformatics/btab793</a>
+
 Luo W, Brouwer C. Pathview: an R/Biocondutor package for pathway-based data integration and visualization. Bioinformatics, 2013, 29(14):1830-1831, <a href=https://doi.org/10.1093/bioinformatics/btt285>doi: 10.1093/bioinformatics/btt285</a>
 
 
