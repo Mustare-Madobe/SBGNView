@@ -278,7 +278,7 @@ transform = \"rotate(%f %f %f)\"
 "
 
 plot.path <- function(d, id, fill.color, stroke.width, stroke.color, angle = 0, rotate.x = 0, 
-                      rotate.y = 0, fill.opacity = 0.6, stroke.opacity = 1, object) {
+                      rotate.y = 0, fill.opacity = 1, stroke.opacity = 1, object) {
     
     if ("shape" %in% slotNames(object)) {
         # if we are ploting a glyph(glyph has slot 'shape')
@@ -328,7 +328,7 @@ style=\"fill:%s;fill-opacity:%f;stroke:%s;stroke-width:%f;stroke-opacity:%f\" />
 "
 
 plot.rectangle <- function(x, y, h, w, id, rx = 0, ry = 0, fill.color = "white", 
-                           stroke.color = "black", stroke.width = 1, fill.opacity = 0.6, 
+                           stroke.color = "black", stroke.width = 1, fill.opacity = 1, 
                            stroke.opacity = 1, glyph = new("glyph")) {
     
     if (length(glyph@shape$fill.color) > 0) {
